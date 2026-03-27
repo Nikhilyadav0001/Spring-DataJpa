@@ -11,7 +11,7 @@ import nikhil.dao.IStudentDao;
 import nikhil.entity.Student;
 import nikhil.exception.StudentNotFoundException;
 
-@Component
+//@Component
 public class StudentRunner implements CommandLineRunner {
 
 	@Autowired
