@@ -1,5 +1,7 @@
 package nikhil.runner;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
@@ -36,6 +38,9 @@ public class StudentDeleteRunner implements CommandLineRunner {
 											)
 						)		
 				);
+		
+		//delete all with 10,11
+		dao.deleteAllById(List.of(10,11));
 		
 	}
 
