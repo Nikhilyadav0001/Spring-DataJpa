@@ -29,7 +29,6 @@ public class EmployeeRunner implements CommandLineRunner {
 
 		repo.fetchNameOfEmployees().forEach(System.out::println);
 
-		repo.fetchAllEmployees().forEach(System.out::println);
 		
 		List<Object[]> objects =repo.fetchIdAndNameofEmployee();
 		for (Object[] obj : objects) {
@@ -45,6 +44,25 @@ public class EmployeeRunner implements CommandLineRunner {
 			}
 			System.out.println();
 		}
+		
+		System.out.println("Before deletion");
+		repo.fetchAllEmployees().forEach(System.out::println);
+		
+		System.out.println("no of employees deleted is "+repo.deleteEmployeeById(101));
+		
+		System.out.println("After deletion");
+		repo.fetchAllEmployees().forEach(System.out::println);
+		
+		System.out.println("Before update");
+		repo.fetchAllEmployees().forEach(System.out::println);
+		
+		System.out.println("no of employees deleted is "+repo.updateEmployeeSalById(102,3500.0));
+		
+		System.out.println("After update");
+		repo.fetchAllEmployees().forEach(System.out::println);
+		
+		
+		
 		
 		
 		
