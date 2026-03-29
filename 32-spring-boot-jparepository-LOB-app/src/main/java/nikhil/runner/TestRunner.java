@@ -2,12 +2,11 @@ package nikhil.runner;
 
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.InputStream;
-import java.io.Reader;
-import java.time.LocalDateTime;
-import java.util.Scanner;
+import java.io.FileOutputStream;
+import java.io.FileWriter;
+import java.io.OutputStream;
+import java.io.Writer;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -26,7 +25,7 @@ public class TestRunner implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		
-		
+		/*
 		Scanner scanner = new Scanner(System.in);
 
 		System.out.print("Enter the name of the user :: ");
@@ -65,7 +64,29 @@ public class TestRunner implements CommandLineRunner {
 		  reader.close();
 		  is.close();
 		 
+		*/
 		
+		// code for retrieval
+		Optional<MarriageSeeker> optional = repo.findById(1);
+		if (optional.isPresent()) {
+			MarriageSeeker obj = optional.get();
+			System.out.println(obj);
+
+			System.out.println("Image data stored in ...");
+			OutputStream os = new FileOutputStream(new File("retrieved_img.jpg"));
+			os.write(obj.getPhoto());
+			os.flush();
+
+			System.out.println("BioData stored in ...");
+			Writer writer = new FileWriter(new File("retrieved_bio.txt"));
+			writer.write(obj.getBiodata());
+			writer.flush();
+			System.out.println("Lob's are retrieved...");
+
+		} else {
+			System.out.println("Record not available...");
+		}
+
 		
 	}
 }
