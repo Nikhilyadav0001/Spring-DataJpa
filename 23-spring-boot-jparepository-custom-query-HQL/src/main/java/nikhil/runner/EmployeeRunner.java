@@ -25,46 +25,42 @@ public class EmployeeRunner implements CommandLineRunner {
 				new Employee(104, "DD", 400.0, "QA"),
 				new Employee(105, "EF", 600.0, "DEV")));
 		
-		repo.fetchAllEmployeesWithSalGreater(300.0).forEach(System.out::println);
+		repo.fetchAllEmployees(300.0).forEach(System.out::println);
 
 		repo.fetchNameOfEmployees().forEach(System.out::println);
 
-		
-		List<Object[]> objects =repo.fetchIdAndNameofEmployee();
+		List<Object[]> objects = repo.fetchIdAndNameofEmployee();
 		for (Object[] obj : objects) {
 			for (Object row : obj) {
-				System.out.print(row+"\t");	
+				System.out.print(row + "\t");
 			}
 			System.out.println();
 		}
-		List<Object[]> objects1 =repo.fetchBasedonDept("DEV");
-		for (Object[] obj : objects1) {
+		
+		
+		List<Object[]> objs = repo.fetchBasedonDept("QA");
+		for (Object[] obj : objs) {
 			for (Object row : obj) {
-				System.out.print(row+"\t");	
+				System.out.print(row+"\t");
 			}
 			System.out.println();
 		}
 		
-		System.out.println("Before deletion");
+		System.out.println("Before deletion:: ");
 		repo.fetchAllEmployees().forEach(System.out::println);
 		
-		System.out.println("no of employees deleted is "+repo.deleteEmployeeById(101));
+		System.out.println("No of records deleted are :: "+repo.deleteEmployeeById(101));
 		
-		System.out.println("After deletion");
+		System.out.println("After deletion:: ");
 		repo.fetchAllEmployees().forEach(System.out::println);
+	
 		
-		System.out.println("Before update");
+		System.out.println("Before updation salary is :: ");
 		repo.fetchAllEmployees().forEach(System.out::println);
+
+		System.out.println("No of records updated is :: "+repo.updateEmployeeSalaryById(102, 200.0));
 		
-		System.out.println("no of employees deleted is "+repo.updateEmployeeSalById(102,3500.0));
-		
-		System.out.println("After update");
+		System.out.println("After updation salary is :: ");
 		repo.fetchAllEmployees().forEach(System.out::println);
-		
-		
-		
-		
-		
-		
 		}
 }
